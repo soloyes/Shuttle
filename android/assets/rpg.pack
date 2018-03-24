@@ -1,0 +1,33 @@
+
+texturePack1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero
+  rotate: false
+  xy: 2, 2
+  size: 120, 120
+  orig: 120, 120
+  offset: 0, 0
+  index: -1
+element
+  rotate: false
+  xy: 124, 2
+  size: 120, 120
+  orig: 120, 120
+  offset: 0, 0
+  index: -1
+simpleButton
+  rotate: false
+  xy: 246, 2
+  size: 320, 80
+  orig: 320, 80
+  offset: 0, 0
+  index: -1
+shortButton
+  rotate: false
+  xy: 568, 2
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
