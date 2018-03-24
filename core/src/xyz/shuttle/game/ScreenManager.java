@@ -9,7 +9,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import xyz.shuttle.game.screens.GameScreen;
 import xyz.shuttle.game.screens.MenuScreen;
-import xyz.shuttle.game.screens.MenuScreen1;
 import xyz.shuttle.game.screens.LoadingScreen;
 
 /**
@@ -23,7 +22,7 @@ public class ScreenManager {
     private Camera camera;
     private GameScreen gameScreen;
     private LoadingScreen loadingScreen;
-    private MenuScreen1 menuScreen;
+    private MenuScreen menuScreen;
     private Screen targetScreen;
     private ScreenManager() {
     }
@@ -45,7 +44,7 @@ public class ScreenManager {
         this.viewport.apply();
         this.loadingScreen = new LoadingScreen(batch);
         this.gameScreen = new GameScreen(batch, camera);
-        this.menuScreen = new MenuScreen1(batch);
+        this.menuScreen = new MenuScreen(batch);
     }
 
     public void onResize(int width, int height) {

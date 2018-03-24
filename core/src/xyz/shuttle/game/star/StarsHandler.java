@@ -9,7 +9,6 @@ import xyz.shuttle.game.tools.Rnd;
  * Created by sol on 2/6/18.
  * Class for store and manipulate with Star
  */
-
 public class StarsHandler {
     private final int STARS = 80;
     private Star[] stars = new Star[STARS];
@@ -50,7 +49,7 @@ public class StarsHandler {
 //        }
 //    }
 
-    public void dispose(){
+    public void dispose() {
         starTexture.getTexture().dispose();
     }
 }
