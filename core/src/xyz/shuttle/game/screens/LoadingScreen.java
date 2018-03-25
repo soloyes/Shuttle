@@ -21,7 +21,7 @@ public class LoadingScreen implements Screen {
     public LoadingScreen(SpriteBatch batch) {
         this.batch = batch;
         Pixmap pixmap = new Pixmap(1280, 40, Pixmap.Format.RGB888);
-        pixmap.setColor(Color.GREEN);
+        pixmap.setColor(0.8f, 0.43f, 0.33f, 1f);
         pixmap.fill();
         texture = new Texture(pixmap);
     }

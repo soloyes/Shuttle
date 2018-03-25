@@ -1,14 +1,16 @@
 package xyz.shuttle.game.buttons;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-public class ImageButtonBuilder extends Button {
-    private final float size = 0.2f;
-    private ImageButton button;
-    private ImageButton.ImageButtonStyle buttonStyle;
+public class ImageButtonBuilder {
+    private final float size = 0.3f;
+    private ImageButton myButton;
+    private ImageButton.ImageButtonStyle myButtonStyle;
     private Skin skin;
 
     public ImageButtonBuilder(Skin skin) {
@@ -16,11 +18,26 @@ public class ImageButtonBuilder extends Button {
     }
 
     public Button getButton(String name, float x, float y) {
-        buttonStyle = new ImageButton.ImageButtonStyle();
-        buttonStyle.imageUp = skin.getDrawable(name);
-        button = new ImageButton(buttonStyle);
-        button.setPosition(x, y);
-        button.setSize(Gdx.graphics.getWidth() * size, Gdx.graphics.getWidth() * size);
-        return button;
+        myButtonStyle = new ImageButton.ImageButtonStyle();
+        myButtonStyle.imageUp = skin.getDrawable(name);
+        myButton = new ImageButton(myButtonStyle);
+        myButton.setPosition(x, y);
+        myButton.setSize(Gdx.graphics.getWidth() * size, Gdx.graphics.getWidth() * size);
+        myButton.setTransform(true);
+
+        final ImageButton btn = myButton;
+        myButton.addListener(new ClickListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                btn.setScale(0.95f);
+                return true;
+            }
+
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                btn.setScale(1f);
+            }
+        });
+        return myButton;
     }
 }
