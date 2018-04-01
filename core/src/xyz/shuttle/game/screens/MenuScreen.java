@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
+import xyz.shuttle.game.Assets;
 import xyz.shuttle.game.ScreenManager;
 import xyz.shuttle.game.buttons.MenuBar;
 import xyz.shuttle.game.star.StarsEmitter;
@@ -16,7 +17,6 @@ import xyz.shuttle.game.star.StarsEmitter;
  */
 public class MenuScreen implements Screen {
     private Stage stage;
-    private Music music;
 
     public MenuScreen(SpriteBatch batch) {
         stage = new Stage(ScreenManager.getInstance().getViewport(), batch);
@@ -26,9 +26,14 @@ public class MenuScreen implements Screen {
     public void show() {
         createGUI();
         Gdx.input.setInputProcessor(stage);
-        music = Gdx.audio.newMusic(Gdx.files.internal("music/menu.ogg"));
-        music.play();
-        music.setLooping(true);
+        Assets.getInstance()
+                .getAssetManager()
+                .get("music/menu.ogg", Music.class)
+                .play();
+        Assets.getInstance()
+                .getAssetManager()
+                .get("music/menu.ogg", Music.class)
+                .setLooping(true);
     }
 
     private void createGUI() {
@@ -66,6 +71,6 @@ public class MenuScreen implements Screen {
 
     @Override
     public void dispose() {
-        music.dispose();
+        ScreenManager.getInstance().dispose();
     }
 }

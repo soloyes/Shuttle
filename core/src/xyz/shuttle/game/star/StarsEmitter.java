@@ -1,5 +1,6 @@
 package xyz.shuttle.game.star;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -16,6 +17,7 @@ public class StarsEmitter extends Actor {
     private Star[] stars = new Star[STARS];
 
     public StarsEmitter() {
+        System.out.println(Gdx.graphics.getWidth() + " " + Gdx.graphics.getHeight());
         TextureRegion region = Assets.getInstance().getAtlas().findRegion("star");
         for (int i = 0; i < stars.length; i++) {
             stars[i] = new Star(
@@ -23,6 +25,7 @@ public class StarsEmitter extends Actor {
                     Rnd.nextFloat(-50f, 200f),
                     Rnd.nextFloat(10f, 20f),
                     Rnd.nextFloat(0.2f, 0.7f));
+            //stars[i] = new Star(region, -50, 200, 0.5f);
         }
     }
 
@@ -45,8 +48,4 @@ public class StarsEmitter extends Actor {
             stars[i].update(delta);
         }
     }
-
-//    public void dispose() {
-//        starTexture.getTexture().dispose();
-//    }
 }

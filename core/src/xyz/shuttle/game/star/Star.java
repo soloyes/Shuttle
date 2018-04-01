@@ -26,10 +26,10 @@ public class Star extends VectorSprite {
 
     private void checkAndHandleBounds() {
         if (getX() + getWidth() < 0) {
-            setVector2Position(Gdx.graphics.getWidth() + getWidth(), getY());
+            setVector2Position(Gdx.graphics.getWidth(), getY());
         }
         if (getX() > Gdx.graphics.getWidth()) {
-            setVector2Position(0f, getY());
+            setVector2Position(-getWidth(), getY());
         }
         if (getY() > Gdx.graphics.getHeight()) {
             setVector2Position(getX(), -getHeight());

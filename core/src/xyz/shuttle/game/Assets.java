@@ -1,8 +1,10 @@
 package xyz.shuttle.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -32,6 +34,7 @@ public class Assets {
 //                createStandardFont(32);
 //                createStandardFont(96);
                 assetManager.load("textures/mainAtlas.atlas", TextureAtlas.class);
+                assetManager.load("music/menu.ogg", Music.class);
                 break;
             case GAME:
                 assetManager.load("rpg.pack", TextureAtlas.class);
