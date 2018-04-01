@@ -58,7 +58,7 @@ public class ScreenManager {
         if (screen != null) {
             screen.dispose();
         }
-        resetCamera();
+        //resetCamera();
         switch (type) {
             case MENU:
                 game.setScreen(loadingScreen);

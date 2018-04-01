@@ -1,45 +1,41 @@
 package xyz.shuttle.game.star;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
-public class Star extends Sprite{
+import xyz.shuttle.game.tools.Rnd;
 
+public class Star extends VectorSprite {
     private Vector2 velocity;
-    private Vector2 position;
-
-    public Vector2 getVelocity() {
-        return velocity;
-    }
-
-    public void setVelocity(Vector2 velocity) {
-        this.velocity = velocity;
-    }
 
     Star(TextureRegion region, float vx, float vy, float height) {
         super(region);
-        velocity.set(vx, -vy);
-        //setHeightProportion(Rnd.nextFloat(height, height*2));
+        setScale(height);
+        setVector2Position(
+                Rnd.nextInt(Gdx.graphics.getWidth()),
+                Rnd.nextInt(Gdx.graphics.getHeight())
+        );
+        velocity = new Vector2(vx, vy);
     }
 
-//    public void update(float delta) {
-//        pos.mulAdd(velocity, delta);
-//        checkAndHandleBounds();
-//    }
+    public void update(float delta) {
+        setVector2Position(getVector2Position().mulAdd(velocity, delta));
+        checkAndHandleBounds();
+    }
 
-//    private void checkAndHandleBounds() {
-//        if (this.getRight() < worldBounds.getLeft()) setLeft(worldBounds.getRight());
-//        if (this.getLeft() > worldBounds.getRight()) setRight(worldBounds.getLeft());
-//        if (this.getTop() < worldBounds.getBottom()) setBottom(worldBounds.getTop());
-//        if (this.getBottom() > worldBounds.getTop()) setTop(worldBounds.getBottom());
-//    }
-//
-//    @Override
-//    public void resize(Rect worldBounds) {
-//        this.worldBounds = worldBounds;
-//        float posX = Rnd.nextFloat(worldBounds.getLeft(), worldBounds.getRight());
-//        float posY = Rnd.nextFloat(worldBounds.getBottom(), worldBounds.getTop());
-//        pos.set(posX, posY);
-//    }
+    private void checkAndHandleBounds() {
+        if (getX() + getWidth() < 0) {
+            setVector2Position(Gdx.graphics.getWidth() + getWidth(), getY());
+        }
+        if (getX() > Gdx.graphics.getWidth()) {
+            setVector2Position(0f, getY());
+        }
+        if (getY() > Gdx.graphics.getHeight()) {
+            setVector2Position(getX(), -getHeight());
+        }
+        if (getY() + getHeight() < 0) {
+            setVector2Position(getX(), Gdx.graphics.getHeight());
+        }
+    }
 }

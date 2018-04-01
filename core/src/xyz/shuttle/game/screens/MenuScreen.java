@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import xyz.shuttle.game.ScreenManager;
 import xyz.shuttle.game.buttons.MenuBar;
+import xyz.shuttle.game.star.StarsEmitter;
 
 /**
  * @author Shuttle on 3/24/18.
@@ -31,6 +32,7 @@ public class MenuScreen implements Screen {
     }
 
     private void createGUI() {
+        stage.addActor(new StarsEmitter());
         stage.addActor(new MenuBar());
     }
 
@@ -38,6 +40,7 @@ public class MenuScreen implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0f, 0f, 0f, 1.0f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        stage.act(delta);
         stage.draw();
     }
 

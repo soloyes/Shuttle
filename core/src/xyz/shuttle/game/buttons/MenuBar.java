@@ -4,12 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import xyz.shuttle.game.Assets;
 import xyz.shuttle.game.ScreenManager;
@@ -22,6 +19,8 @@ public class MenuBar extends Group {
     private Button buttonPlay;
 
     public MenuBar() {
+        System.out.println(Gdx.graphics.getWidth());
+        System.out.println(Gdx.graphics.getHeight());
         Skin skin = new Skin(Assets.getInstance().getAtlas());
         ImageButtonBuilder buttonBuilder = new ImageButtonBuilder(skin);
         buttonPlay = buttonBuilder.getButton("play", 0f, 0f);
