@@ -38,9 +38,8 @@ public class ScreenManager {
     public void init(CoreGame game, SpriteBatch batch) {
         this.game = game;
         this.batch = batch;
-
-        this.camera = new OrthographicCamera(600, 800);
-        this.viewport = new FitViewport(600, 800, camera);
+        this.camera = new OrthographicCamera(1080, 1920);
+        this.viewport = new FitViewport(1080, 1920, camera);
         this.viewport.apply();
         this.loadingScreen = new LoadingScreen(batch);
         this.gameScreen = new GameScreen(batch, camera);
@@ -85,6 +84,10 @@ public class ScreenManager {
 
     public Viewport getViewport() {
         return viewport;
+    }
+
+    public Camera getCamera() {
+        return camera;
     }
 
     public enum ScreenType {

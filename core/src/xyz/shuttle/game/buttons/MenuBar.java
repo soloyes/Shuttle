@@ -19,8 +19,6 @@ public class MenuBar extends Group {
     private Button buttonPlay;
 
     public MenuBar() {
-        System.out.println(Gdx.graphics.getWidth());
-        System.out.println(Gdx.graphics.getHeight());
         Skin skin = new Skin(Assets.getInstance().getAtlas());
         ImageButtonBuilder buttonBuilder = new ImageButtonBuilder(skin);
         buttonPlay = buttonBuilder.getButton("play", 0f, 0f);
