@@ -7,6 +7,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+/**
+ * @author Shuttle on 3/24/18.
+ */
 public class ImageButtonBuilder {
     private final float SIZE = 0.3f;
     private ImageButton myButton;

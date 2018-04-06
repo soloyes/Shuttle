@@ -1,13 +1,12 @@
 package xyz.shuttle.game.screens;
 
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import xyz.shuttle.game.Assets;
 import xyz.shuttle.game.ScreenManager;
-import xyz.shuttle.game.star.StarsEmitter;
+import xyz.shuttle.game.space.planets.EarthActor;
+import xyz.shuttle.game.space.star.StarsEmitter;
 
 /**
  * @author Shuttle on 4/6/18.
@@ -33,6 +32,7 @@ public class GameScreen extends BaseScreen {
     @Override
     void createGUI() {
         stage.addActor(new StarsEmitter());
+        stage.addActor(new EarthActor());
     }
 
     @Override

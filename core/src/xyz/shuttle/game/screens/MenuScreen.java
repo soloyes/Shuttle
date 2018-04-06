@@ -5,13 +5,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import xyz.shuttle.game.Assets;
 import xyz.shuttle.game.buttons.MenuBar;
-import xyz.shuttle.game.star.StarsEmitter;
+import xyz.shuttle.game.space.star.StarsEmitter;
 
 /**
  * @author Shuttle on 3/24/18.
  */
 public class MenuScreen extends BaseScreen {
-
     public MenuScreen(SpriteBatch batch) {
         super(batch);
     }
