@@ -5,6 +5,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -19,28 +20,13 @@ public class Assets {
     private static final Assets ourInstance = new Assets();
     private AssetManager assetManager;
     private TextureAtlas textureAtlas;
+
     private Assets() {
         assetManager = new AssetManager();
     }
 
     public void clear() {
         assetManager.clear();
-    }
-
-    public void loadAssets(ScreenManager.ScreenType type) {
-        switch (type) {
-            case MENU:
-//                assetManager.load("rpg.pack", TextureAtlas.class);
-//                createStandardFont(32);
-//                createStandardFont(96);
-                assetManager.load("textures/mainAtlas.atlas", TextureAtlas.class);
-                assetManager.load("music/menu.ogg", Music.class);
-                break;
-            case GAME:
-                assetManager.load("rpg.pack", TextureAtlas.class);
-                createStandardFont(24);
-                break;
-        }
     }
 
     public void createStandardFont(int size) {
@@ -57,6 +43,22 @@ public class Assets {
         fontParameter.fontParameters.shadowOffsetY = 1;
         fontParameter.fontParameters.shadowColor = Color.BLACK;
         assetManager.load("zorque" + size + ".ttf", BitmapFont.class, fontParameter);
+    }
+
+    public void loadAssets(ScreenManager.ScreenType type) {
+        switch (type) {
+            case MENU:
+                assetManager.load("textures/mainAtlas.atlas", TextureAtlas.class);
+                assetManager.load("music/menu.ogg", Music.class);
+                break;
+            case GAME:
+                assetManager.load("textures/mainAtlas.atlas", TextureAtlas.class);
+                assetManager.load("music/game.ogg", Music.class);
+                assetManager.load("music/menu.ogg", Music.class);
+                assetManager.load("music/problem.ogg", Sound.class);
+                assetManager.load("music/rogerroll.ogg", Sound.class);
+                break;
+        }
     }
 
     public void makeLinks() {

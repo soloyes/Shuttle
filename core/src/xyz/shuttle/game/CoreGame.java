@@ -17,6 +17,7 @@ public class CoreGame extends Game {
     @Override
     public void dispose() {
         batch.dispose();
+        ScreenManager.getInstance().dispose();
     }
 
     @Override

@@ -24,6 +24,7 @@ public class ScreenManager {
     private LoadingScreen loadingScreen;
     private MenuScreen menuScreen;
     private Screen targetScreen;
+
     private ScreenManager() {
     }
 
@@ -42,7 +43,7 @@ public class ScreenManager {
         this.viewport = new FitViewport(1080, 1920, camera);
         this.viewport.apply();
         this.loadingScreen = new LoadingScreen(batch);
-        this.gameScreen = new GameScreen(batch, camera);
+        this.gameScreen = new GameScreen(batch);
         this.menuScreen = new MenuScreen(batch);
     }
 
@@ -57,7 +58,6 @@ public class ScreenManager {
         if (screen != null) {
             screen.dispose();
         }
-        //resetCamera();
         switch (type) {
             case MENU:
                 game.setScreen(loadingScreen);
@@ -72,22 +72,12 @@ public class ScreenManager {
         }
     }
 
-    public void resetCamera() {
-        camera.position.set(480, 640, 0);
-        camera.update();
-        batch.setProjectionMatrix(camera.combined);
-    }
-
     public static ScreenManager getInstance() {
         return ourInstance;
     }
 
     public Viewport getViewport() {
         return viewport;
-    }
-
-    public Camera getCamera() {
-        return camera;
     }
 
     public enum ScreenType {

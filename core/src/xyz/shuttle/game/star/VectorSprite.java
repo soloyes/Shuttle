@@ -22,13 +22,13 @@ public class VectorSprite extends Sprite {
         super.setY(y);
     }
 
-    protected Vector2 getVector2Position() {
-        return vector2Position;
-    }
-
     protected void setVector2Position(Vector2 vector2) {
         this.vector2Position = vector2;
         super.setX(vector2.x);
         super.setY(vector2.y);
+    }
+
+    protected Vector2 getVector2Position() {
+        return vector2Position;
     }
 }

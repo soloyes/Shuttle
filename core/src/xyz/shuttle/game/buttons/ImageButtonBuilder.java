@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class ImageButtonBuilder {
-    private final float size = 0.3f;
+    private final float SIZE = 0.3f;
     private ImageButton myButton;
     private ImageButton.ImageButtonStyle myButtonStyle;
     private Skin skin;
@@ -22,7 +22,7 @@ public class ImageButtonBuilder {
         myButtonStyle.imageUp = skin.getDrawable(name);
         myButton = new ImageButton(myButtonStyle);
         myButton.setPosition(x, y);
-        myButton.setSize(Gdx.graphics.getWidth() * size, Gdx.graphics.getWidth() * size);
+        myButton.setSize(Gdx.graphics.getWidth() * SIZE, Gdx.graphics.getWidth() * SIZE);
         myButton.setTransform(true);
 
         final ImageButton btn = myButton;
