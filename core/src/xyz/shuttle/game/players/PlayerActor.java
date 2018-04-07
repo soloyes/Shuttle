@@ -31,4 +31,8 @@ public class PlayerActor extends Actor {
     public void setWorldHit(Vector2 worldHit) {
         player.setTarget(worldHit);
     }
+
+    public void setAstronaut(Astronaut astronaut){
+        player.setAstronaut(astronaut);
+    }
 }

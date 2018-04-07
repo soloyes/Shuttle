@@ -33,7 +33,7 @@ public class Assets {
         assetManager.setLoader(FreeTypeFontGenerator.class, new FreeTypeFontGeneratorLoader(resolver));
         assetManager.setLoader(BitmapFont.class, ".ttf", new FreetypeFontLoader(resolver));
         FreetypeFontLoader.FreeTypeFontLoaderParameter fontParameter = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
-        fontParameter.fontFileName = "zorque.ttf";
+        fontParameter.fontFileName = "fonts/zorque.ttf";
         fontParameter.fontParameters.size = size;
         fontParameter.fontParameters.color = Color.WHITE;
         fontParameter.fontParameters.borderWidth = 1;
@@ -56,7 +56,7 @@ public class Assets {
                 assetManager.load("music/menu.ogg", Music.class);
                 assetManager.load("music/problem.ogg", Sound.class);
                 assetManager.load("music/rogerroll.ogg", Sound.class);
-                createStandardFont(10);
+                createStandardFont(32);
                 break;
         }
     }

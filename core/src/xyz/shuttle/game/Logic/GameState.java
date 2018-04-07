@@ -1,55 +1,30 @@
 package xyz.shuttle.game.Logic;
 
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.utils.viewport.Viewport;
+
+import xyz.shuttle.game.Assets;
+import xyz.shuttle.game.ScreenManager;
 
 /**
  * @author Shuttle on 6/04/18.
  */
-
-public class GameState {
+public class GameState extends Actor {
     private Score score;
     private Lives lives;
     private State state;
-
+    private BitmapFont font32;
     private StringBuilder sbScore;
     private StringBuilder sbGameOver;
+    protected Viewport viewport = ScreenManager.getInstance().getViewport();
 
-    private Vector2 zeroVector = new Vector2(0.0f, 0.0f);
-
-    public Lives getLives() { return lives; }
-
-    public void setGameOver() {
-        this.state = State.GAMEOVER;
-    }
-
-    public boolean isPlaying(){
-        return state.equals(State.PLAY);
-    }
-
-    public StringBuilder getSbScore() { return sbScore; }
-
-    public Score getScore() { return score; }
-
-    public StringBuilder getSbGameOver() { return sbGameOver; }
-
-    public void statePlayAgain(){
-        state = State.PLAY;
-    }
-
-    public void initScore(){
-        score.initScore();
-    }
-
-    public void initLives(){
-        lives.initLives();
-    }
-
-    public Vector2 getZeroVector() { return zeroVector; }
-
-    public GameState(TextureAtlas atlas) {
+    public GameState() {
         score = new Score();
-        lives = new Lives(atlas);
+        lives = new Lives();
+        font32 = Assets.getInstance().getAssetManager().get("zorque32.ttf", BitmapFont.class);
 
         sbScore = new StringBuilder();
         sbGameOver = new StringBuilder("GameOver");
@@ -57,7 +32,58 @@ public class GameState {
         state = State.PLAY;
     }
 
-    private enum State{
-        PLAY, GAMEOVER;
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        sbScore.setLength(0);
+        getFont32().draw(
+                batch,
+                getSbScore().append("Score: ").append(score.getScore()),
+                0,
+                viewport.getWorldHeight());
+        getLives().draw(batch);
+    }
+
+    public StringBuilder getSbScore() {
+        return sbScore;
+    }
+
+    public BitmapFont getFont32() {
+        return font32;
+    }
+
+    public void initLives() {
+        lives.initLives();
+    }
+
+    public void initScore() {
+        score.initScore();
+    }
+
+    public void setGameOver() {
+        this.state = State.GAMEOVER;
+    }
+
+    public void statePlayAgain() {
+        state = State.PLAY;
+    }
+
+    public Lives getLives() {
+        return lives;
+    }
+
+    public StringBuilder getSbGameOver() {
+        return sbGameOver;
+    }
+
+    public Score getScore() {
+        return score;
+    }
+
+    public boolean isPlaying() {
+        return state.equals(State.PLAY);
+    }
+
+    private enum State {
+        PLAY, GAMEOVER
     }
 }

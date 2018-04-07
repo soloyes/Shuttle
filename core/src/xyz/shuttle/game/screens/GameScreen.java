@@ -6,7 +6,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
 import xyz.shuttle.game.Assets;
+import xyz.shuttle.game.Logic.GameState;
 import xyz.shuttle.game.ScreenManager;
+import xyz.shuttle.game.players.AstronautActor;
 import xyz.shuttle.game.players.PlayerActor;
 import xyz.shuttle.game.space.planets.EarthActor;
 import xyz.shuttle.game.space.star.StarsEmitter;
@@ -15,10 +17,12 @@ import xyz.shuttle.game.space.star.StarsEmitter;
  * @author Shuttle on 4/6/18.
  */
 public class GameScreen extends BaseScreen {
-    private Vector2 worldHit = new Vector2();
-    private Vector2 windowHit = new Vector2();
+    private EarthActor earthActor;
     private PlayerActor playerActor;
     private StarsEmitter starsEmitter;
+    private AstronautActor astronautActor;
+    private Vector2 screenHit = new Vector2();
+    private GameState gameState;
 
     public GameScreen(SpriteBatch batch) {
         super(batch);
@@ -39,13 +43,20 @@ public class GameScreen extends BaseScreen {
 
     @Override
     void createGUI() {
+        earthActor = new EarthActor();
         starsEmitter = new StarsEmitter();
         playerActor = new PlayerActor();
         playerActor.getPlayer().setStars(starsEmitter);
+        astronautActor = new AstronautActor();
+        playerActor.setAstronaut(astronautActor.getAstronaut());
+        gameState = new GameState();
+        playerActor.getPlayer().setScore(gameState.getScore());
 
         stage.addActor(starsEmitter);
-        stage.addActor(new EarthActor());
+        stage.addActor(earthActor);
+        stage.addActor(astronautActor);
         stage.addActor(playerActor);
+        stage.addActor(gameState);
     }
 
     @Override
@@ -53,7 +64,6 @@ public class GameScreen extends BaseScreen {
         super.render(delta);
         update();
         stage.act(delta);
-
         stage.draw();
     }
 
@@ -63,10 +73,10 @@ public class GameScreen extends BaseScreen {
     }
 
     private void update() {
-        if (Gdx.input.isTouched())
-            playerActor.setWorldHit(stage.screenToStageCoordinates(
-                    new Vector2(
-                            Gdx.input.getX(),
-                            Gdx.input.getY())));
+        //todo: Дописать управление, чтобы на два пальца реагировало адекватно.
+        if (Gdx.input.isTouched()) {
+            screenHit.set(Gdx.input.getX(), Gdx.input.getY());
+            playerActor.setWorldHit(stage.screenToStageCoordinates(screenHit));
+        }
     }
 }

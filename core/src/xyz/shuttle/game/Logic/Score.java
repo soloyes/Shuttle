@@ -11,8 +11,8 @@ public class Score {
         return score;
     }
 
-    public int increaseAndGet(){
-        return ++score;
+    public void nextScore(){
+        ++score;
     }
 
     public int decreaseAndGet(int power){

@@ -1,22 +1,19 @@
 package xyz.shuttle.game.players;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.viewport.Viewport;
 
 import xyz.shuttle.game.Assets;
-import xyz.shuttle.game.ScreenManager;
 import xyz.shuttle.game.space.star.StarsEmitter;
 
 /**
  * @author Shuttle on 6/04/18.
  */
-public class Player extends InsightRect {
+public class Player extends OutsideRect {
     private final float VELOCITY = 600f;
     private Vector2 target;
     private Vector2 destanation;
     private Vector2 norDestanation;
-    private Viewport viewport = ScreenManager.getInstance().getViewport();
-    //private Astronaut astronaut;
+    private Astronaut astronaut;
     //private Alien alien;
     //private Lives lives;
     private StarsEmitter stars;
@@ -30,12 +27,12 @@ public class Player extends InsightRect {
         pos.set(viewport.getWorldWidth() / 2, viewport.getWorldHeight() + this.getHeight());
         setAngle(180);
 
-        initInsightRect(this.getWidth(), this.getHeight(), 2f);
+        initOutsideRect(this.getWidth(), this.getHeight(), 2f);
     }
 
-    //public void setAstronaut(Astronaut astronaut) {
-//        this.astronaut = astronaut;
-//    }
+    public void setAstronaut(Astronaut astronaut) {
+        this.astronaut = astronaut;
+    }
 
 //    public void setAlien(Alien alien) {
 //        this.alien = alien;
@@ -67,17 +64,17 @@ public class Player extends InsightRect {
             setFrame(0);
         }
 ////        //
-        setPosInsightRect(this);
-//        checkCollisions();
+        setPosOutsideRect(this);
+        checkCollisions();
     }
 
     private void checkCollisions() {
-        //        //With astronaut
-//        if (this.isMe(astronaut.pos)) {
-//            astronaut.itemSound.stop();
-//            astronaut.newItem(astronaut);
-//            score.increaseAndGet();
-//        }
+        //With astronaut
+        if (this.isMe(astronaut.pos)) {
+            astronaut.itemSound.stop();
+            astronaut.newItem(astronaut);
+            score.nextScore();
+        }
 //        //With alien
 //        if (alien.isHungry()) {
 //            if (this.isMe(alien.pos)) {
@@ -108,13 +105,14 @@ public class Player extends InsightRect {
     }
 
     private void checkAndHandleBounds() {
-        if (viewport.getWorldWidth() - target.x < parkingRect.getHalfWidth())
-            target.x = viewport.getWorldWidth() - parkingRect.getHalfWidth() / 2;
-        if (target.y < parkingRect.getHalfHeight())
-            target.y = parkingRect.getHalfHeight() / 2;
-        if (target.x < parkingRect.getHalfWidth())
-            target.x = parkingRect.getHalfWidth() / 2;
-        if (viewport.getWorldHeight() - target.y < parkingRect.getHalfWidth())
-            target.y = viewport.getWorldHeight() - parkingRect.getHalfWidth() / 2;
+        //Player is unable to leave worldBounds
+        if (viewport.getWorldWidth() - target.x < outsideRect.getHalfWidth())
+            target.x = viewport.getWorldWidth() - outsideRect.getHalfWidth() / 2;
+        if (target.y < outsideRect.getHalfHeight())
+            target.y = outsideRect.getHalfHeight() / 2;
+        if (target.x < outsideRect.getHalfWidth())
+            target.x = outsideRect.getHalfWidth() / 2;
+        if (viewport.getWorldHeight() - target.y < outsideRect.getHalfWidth())
+            target.y = viewport.getWorldHeight() - outsideRect.getHalfWidth() / 2;
     }
 }
