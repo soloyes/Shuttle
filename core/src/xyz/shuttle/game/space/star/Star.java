@@ -15,6 +15,15 @@ public class Star extends Sprite {
     public Viewport viewport = ScreenManager.getInstance().getViewport();
     private Vector2 velocity;
 
+
+    Vector2 getVelocity() {
+        return velocity;
+    }
+
+    void setVelocity(Vector2 velocity) {
+        this.velocity = velocity;
+    }
+
     Star(float vx, float vy, float a) {
         super(Assets.getInstance().getAtlas().findRegion("star"));
         pos.set(

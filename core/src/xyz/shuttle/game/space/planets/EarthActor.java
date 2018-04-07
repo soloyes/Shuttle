@@ -15,7 +15,7 @@ public class EarthActor extends Actor {
 
     @Override
     public void act(float delta) {
-        earth.act(delta);
+        earth.update(delta);
     }
 
     @Override

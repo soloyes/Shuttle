@@ -43,8 +43,6 @@ public class ScreenManager {
         this.viewport = new FitViewport(1080, 1920, camera);
         this.viewport.apply();
         this.loadingScreen = new LoadingScreen(batch);
-        this.gameScreen = new GameScreen(batch);
-        this.menuScreen = new MenuScreen(batch);
     }
 
     public void onResize(int width, int height) {
@@ -60,11 +58,13 @@ public class ScreenManager {
         }
         switch (type) {
             case MENU:
+                this.menuScreen = new MenuScreen(batch);
                 game.setScreen(loadingScreen);
                 targetScreen = menuScreen;
                 Assets.getInstance().loadAssets(ScreenType.MENU);
                 break;
             case GAME:
+                this.gameScreen = new GameScreen(batch);
                 game.setScreen(loadingScreen);
                 targetScreen = gameScreen;
                 Assets.getInstance().loadAssets(ScreenType.GAME);

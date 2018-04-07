@@ -22,12 +22,6 @@ public class StarsEmitter extends Actor {
         }
     }
 
-//        public void setVAngle(float angle) {
-//        for (int i = 0; i < stars.length; i++) {
-//            stars[i].setV(stars[i].getV().setAngle(angle - 180));
-//        }
-//    }
-
     @Override
     public void draw(Batch batch, float parentAlpha) {
         for (int i = 0; i < stars.length; i++) {
@@ -39,6 +33,12 @@ public class StarsEmitter extends Actor {
     public void act(float delta) {
         for (int i = 0; i < stars.length; i++) {
             stars[i].update(delta);
+        }
+    }
+
+    public void setVAngle(float angle) {
+        for (int i = 0; i < stars.length; i++) {
+            stars[i].setVelocity(stars[i].getVelocity().setAngle(angle - 180));
         }
     }
 }

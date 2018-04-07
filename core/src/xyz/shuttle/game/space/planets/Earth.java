@@ -25,11 +25,11 @@ public class Earth extends Sprite {
                 32
         );
         pos.set(viewport.getWorldWidth() / 2, viewport.getWorldHeight() / 2);
-        setSize(256, 256);
+        setHeightProportion(viewport.getWorldHeight() * 0.15f);
         scaleOut = false;
     }
 
-    public void act(float delta) {
+    public void update(float delta) {
         nextAngle(ROTATION * delta);
 
         //rotation speed:

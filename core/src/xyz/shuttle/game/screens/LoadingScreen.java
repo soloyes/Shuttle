@@ -19,7 +19,7 @@ public class LoadingScreen implements Screen {
 
     public LoadingScreen(SpriteBatch batch) {
         this.batch = batch;
-        Pixmap pixmap = new Pixmap(1280, 40, Pixmap.Format.RGB888);
+        Pixmap pixmap = new Pixmap(1080, 40, Pixmap.Format.RGB888);
         pixmap.setColor(0.8f, 0.43f, 0.33f, 1f);
         pixmap.fill();
         texture = new Texture(pixmap);
@@ -38,7 +38,7 @@ public class LoadingScreen implements Screen {
             ScreenManager.getInstance().goToTarget();
         }
         batch.begin();
-        batch.draw(texture, 0, 0, 1280 * Assets.getInstance().getAssetManager().getProgress(), 40);
+        batch.draw(texture, 0, 0, 1080 * Assets.getInstance().getAssetManager().getProgress(), 40);
         batch.end();
     }
 
