@@ -28,6 +28,24 @@ public class Assets {
         assetManager.clear();
     }
 
+    public void loadAssets(ScreenManager.ScreenType type) {
+        switch (type) {
+            case MENU:
+                assetManager.load("textures/mainAtlas.atlas", TextureAtlas.class);
+                assetManager.load("music/menu.ogg", Music.class);
+                break;
+            case GAME:
+                assetManager.load("textures/mainAtlas.atlas", TextureAtlas.class);
+                assetManager.load("music/game.ogg", Music.class);
+                assetManager.load("music/menu.ogg", Music.class);
+                assetManager.load("music/problem.ogg", Sound.class);
+                assetManager.load("music/rogerroll.ogg", Sound.class);
+                assetManager.load("music/alien.ogg", Sound.class);
+                createStandardFont(32);
+                break;
+        }
+    }
+
     public void createStandardFont(int size) {
         FileHandleResolver resolver = new InternalFileHandleResolver();
         assetManager.setLoader(FreeTypeFontGenerator.class, new FreeTypeFontGeneratorLoader(resolver));
@@ -42,23 +60,6 @@ public class Assets {
         fontParameter.fontParameters.shadowOffsetY = 1;
         fontParameter.fontParameters.shadowColor = Color.BLACK;
         assetManager.load("zorque" + size + ".ttf", BitmapFont.class, fontParameter);
-    }
-
-    public void loadAssets(ScreenManager.ScreenType type) {
-        switch (type) {
-            case MENU:
-                assetManager.load("textures/mainAtlas.atlas", TextureAtlas.class);
-                assetManager.load("music/menu.ogg", Music.class);
-                break;
-            case GAME:
-                assetManager.load("textures/mainAtlas.atlas", TextureAtlas.class);
-                assetManager.load("music/game.ogg", Music.class);
-                assetManager.load("music/menu.ogg", Music.class);
-                assetManager.load("music/problem.ogg", Sound.class);
-                assetManager.load("music/rogerroll.ogg", Sound.class);
-                createStandardFont(32);
-                break;
-        }
     }
 
     public void makeLinks() {

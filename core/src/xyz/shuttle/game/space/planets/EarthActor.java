@@ -14,12 +14,12 @@ public class EarthActor extends Actor {
     }
 
     @Override
-    public void act(float delta) {
-        earth.update(delta);
+    public void draw(Batch batch, float parentAlpha) {
+        earth.draw(batch);
     }
 
     @Override
-    public void draw(Batch batch, float parentAlpha) {
-        earth.draw(batch);
+    public void act(float delta) {
+        earth.update(delta);
     }
 }

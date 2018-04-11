@@ -7,6 +7,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 /**
  * @author Shuttle on 5/04/18.
  */
+//todo: Сделать интерфейс для всех акторов. Классы идентичны.
+
 public class AstronautActor extends Actor {
     private Astronaut astronaut;
 

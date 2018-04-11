@@ -3,6 +3,7 @@ package xyz.shuttle.game.players;
 import com.badlogic.gdx.math.Vector2;
 
 import xyz.shuttle.game.Assets;
+import xyz.shuttle.game.Logic.GameState;
 import xyz.shuttle.game.space.star.StarsEmitter;
 
 /**
@@ -14,9 +15,9 @@ public class Player extends OutsideRect {
     private Vector2 destanation;
     private Vector2 norDestanation;
     private Astronaut astronaut;
-    //private Alien alien;
-    //private Lives lives;
+    private Alien alien;
     private StarsEmitter stars;
+    private GameState gameState;
 
     public Player() {
         super(Assets.getInstance().getAtlas().findRegion("rocket"), 1, 12, 12);
@@ -26,17 +27,8 @@ public class Player extends OutsideRect {
         setHeightProportion(viewport.getWorldHeight() * 0.15f);
         pos.set(viewport.getWorldWidth() / 2, viewport.getWorldHeight() + this.getHeight());
         setAngle(180);
-
         initOutsideRect(this.getWidth(), this.getHeight(), 2f);
     }
-
-    public void setAstronaut(Astronaut astronaut) {
-        this.astronaut = astronaut;
-    }
-
-//    public void setAlien(Alien alien) {
-//        this.alien = alien;
-//    }
 
     public void update(float delta) {
         tmp2.set(target);
@@ -73,27 +65,19 @@ public class Player extends OutsideRect {
         if (this.isMe(astronaut.pos)) {
             astronaut.itemSound.stop();
             astronaut.newItem(astronaut);
-            score.nextScore();
+            gameState.getScore().increment();
         }
-//        //With alien
-//        if (alien.isHungry()) {
-//            if (this.isMe(alien.pos)) {
-//                alien.setHungry(false);
-//                pos.set(0.0f, 0.5f);
-//                setAngle(180);
-//                setTarget(new Vector2(0.0f, 0.0f));
-//                lives.decreaseAndGet();
-//            }
-//        }
+        //With alien
+        if (alien.isHungry()) {
+            if (this.isMe(alien.pos)) {
+                alien.setHungry(false);
+                pos.set(viewport.getWorldWidth(), viewport.getWorldHeight());
+                setAngle(180);
+                setTarget(new Vector2(0.0f, 0.0f));
+                gameState.getLives().decrement();
+            }
+        }
     }
-
-    public void setStars(StarsEmitter stars) {
-        this.stars = stars;
-    }
-
-    //public void setLives(Lives lives) {
-    //    this.lives = lives;
-    //}
 
     public void setTarget(Vector2 target) {
         this.target = target;
@@ -114,5 +98,21 @@ public class Player extends OutsideRect {
             target.x = outsideRect.getHalfWidth() / 2;
         if (viewport.getWorldHeight() - target.y < outsideRect.getHalfWidth())
             target.y = viewport.getWorldHeight() - outsideRect.getHalfWidth() / 2;
+    }
+
+    public void setAlien(Alien alien) {
+        this.alien = alien;
+    }
+
+    public void setAstronaut(Astronaut astronaut) {
+        this.astronaut = astronaut;
+    }
+
+    public void setGameState(GameState gameState) {
+        this.gameState = gameState;
+    }
+
+    public void setStars(StarsEmitter stars) {
+        this.stars = stars;
     }
 }

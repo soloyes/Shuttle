@@ -2,7 +2,6 @@ package xyz.shuttle.game.Logic;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -13,13 +12,13 @@ import xyz.shuttle.game.ScreenManager;
  * @author Shuttle on 6/04/18.
  */
 public class GameState extends Actor {
+    private Viewport viewport = ScreenManager.getInstance().getViewport();
     private Score score;
     private Lives lives;
     private State state;
     private BitmapFont font32;
     private StringBuilder sbScore;
     private StringBuilder sbGameOver;
-    protected Viewport viewport = ScreenManager.getInstance().getViewport();
 
     public GameState() {
         score = new Score();
@@ -43,32 +42,24 @@ public class GameState extends Actor {
         getLives().draw(batch);
     }
 
-    public StringBuilder getSbScore() {
-        return sbScore;
-    }
-
     public BitmapFont getFont32() {
         return font32;
     }
 
-    public void initLives() {
-        lives.initLives();
-    }
-
-    public void initScore() {
-        score.initScore();
-    }
-
-    public void setGameOver() {
-        this.state = State.GAMEOVER;
-    }
-
-    public void statePlayAgain() {
-        state = State.PLAY;
+    public StringBuilder getSbScore() {
+        return sbScore;
     }
 
     public Lives getLives() {
         return lives;
+    }
+
+    public void setGameOver() {
+        state = State.GAMEOVER;
+    }
+
+    public void setPlayAgain() {
+        state = State.PLAY;
     }
 
     public StringBuilder getSbGameOver() {

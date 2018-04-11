@@ -31,14 +31,11 @@ public abstract class OutsideRect extends Sprite {
     protected Vector2 tmp1 = new Vector2();
     protected Vector2 tmp2 = new Vector2();
     protected Vector2 tmp3 = new Vector2();
-    protected Score score;
+    //
     protected Sound itemSound;
     private boolean loud;
     private Vector2 newItem = new Vector2();
-
-    public void setScore(Score score) {
-        this.score = score;
-    }
+    private int i = 0;
 
     protected OutsideRect(TextureRegion region) {
         super(region);
@@ -74,7 +71,7 @@ public abstract class OutsideRect extends Sprite {
         }
     }
 
-    protected Vector2 generate(Side side) {
+    private Vector2 generate(Side side) {
         float x = 0;
         float y = 0;
         switch (side) {

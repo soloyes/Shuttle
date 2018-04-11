@@ -8,7 +8,6 @@ import xyz.shuttle.game.players.OutsideRect;
 /**
  * @author Shuttle on 6/04/18.
  */
-
 public class Lives extends OutsideRect {
     private final int LIVES = 3;
     private int lives;
@@ -19,16 +18,8 @@ public class Lives extends OutsideRect {
         initLives();
     }
 
-    public void initLives(){
+    public void initLives() {
         lives = LIVES;
-    }
-
-    public int decreaseAndGet() {
-        return --lives;
-    }
-
-    public boolean hasLives(){
-        return lives > 0;
     }
 
     @Override
@@ -39,5 +30,13 @@ public class Lives extends OutsideRect {
             setFrame(11);
             super.draw(batch);
         }
+    }
+
+    public void decrement() {
+        this.lives--;
+    }
+
+    public boolean hasLives() {
+        return lives > 0;
     }
 }
