@@ -17,6 +17,7 @@ public class GameState extends Actor {
     private Lives lives;
     private State state;
     private BitmapFont font32;
+    private BitmapFont font96;
     private StringBuilder sbScore;
     private StringBuilder sbGameOver;
 
@@ -24,6 +25,7 @@ public class GameState extends Actor {
         score = new Score();
         lives = new Lives();
         font32 = Assets.getInstance().getAssetManager().get("zorque32.ttf", BitmapFont.class);
+        font96 = Assets.getInstance().getAssetManager().get("zorque96.ttf", BitmapFont.class);
 
         sbScore = new StringBuilder();
         sbGameOver = new StringBuilder("GameOver");
@@ -44,6 +46,10 @@ public class GameState extends Actor {
 
     public BitmapFont getFont32() {
         return font32;
+    }
+
+    public BitmapFont getFont96() {
+        return font96;
     }
 
     public StringBuilder getSbScore() {

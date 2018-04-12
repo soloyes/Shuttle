@@ -28,6 +28,10 @@ public class ScreenManager {
     private ScreenManager() {
     }
 
+    public SpriteBatch getBatch() {
+        return batch;
+    }
+
     public void dispose() {
         Assets.getInstance().getAssetManager().dispose();
     }

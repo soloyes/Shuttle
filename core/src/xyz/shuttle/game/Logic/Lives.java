@@ -9,7 +9,7 @@ import xyz.shuttle.game.players.OutsideRect;
  * @author Shuttle on 6/04/18.
  */
 public class Lives extends OutsideRect {
-    private final int LIVES = 3;
+    private final int LIVES = 1;
     private int lives;
 
     public Lives() {

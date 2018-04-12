@@ -42,6 +42,7 @@ public class Assets {
                 assetManager.load("music/rogerroll.ogg", Sound.class);
                 assetManager.load("music/alien.ogg", Sound.class);
                 createStandardFont(32);
+                createStandardFont(96);
                 break;
         }
     }

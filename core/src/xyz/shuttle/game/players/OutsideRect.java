@@ -98,7 +98,7 @@ public abstract class OutsideRect extends Sprite {
         return loud;
     }
 
-    protected void setLoud(boolean loud) {
+    public void setLoud(boolean loud) {
         this.loud = loud;
     }
 

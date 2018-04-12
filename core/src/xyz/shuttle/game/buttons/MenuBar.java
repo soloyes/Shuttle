@@ -22,7 +22,8 @@ public class MenuBar extends Group {
         Skin skin = new Skin(Assets.getInstance().getAtlas());
         ImageButtonBuilder buttonBuilder = new ImageButtonBuilder(skin);
         buttonPlay = buttonBuilder.getButton("play", 0f, 0f);
-        buttonExit = buttonBuilder.getButton("exit", Gdx.graphics.getWidth() * 0.7f, 0f);
+        buttonExit = buttonBuilder.getButton("exit",
+                ScreenManager.getInstance().getViewport().getWorldWidth() * 0.7f, 0f);
 
         buttonExit.addListener(new ChangeListener() {
             @Override
